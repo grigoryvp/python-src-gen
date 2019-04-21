@@ -12,8 +12,14 @@ class App:
 
     def generate(self):
         self._prepare_dir()
-        self._generate_file('begin.py', 'end.py')
-        # Generate a number of file that import each other.
+        num_files = 2
+        next_name = 'file_00000000.py'
+        self._generate_file('begin.py', next_name)
+        for file_idx in range(num_files - 1):
+            cur_name = next_name
+            next_name = f'file_{str(file_idx + 1).zfill(8)}.py'
+            self._generate_file(cur_name, next_name)
+        self._generate_file(next_name, 'end.py')
         self._generate_file('end.py')
 
 

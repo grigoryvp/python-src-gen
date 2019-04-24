@@ -6,9 +6,17 @@ import click
 
 
 class App:
-    def __init__(self, out_dir, num_files):
+
+
+    def __init__(
+        self,
+        out_dir,
+        num_files,
+        num_passes):
+
         self.out_path = Path(out_dir)
         self.num_files = num_files
+        self.num_passes = num_passes
 
 
     def generate(self):
@@ -40,9 +48,16 @@ class App:
             text += f'import {module_name}'
         text += '\n\ndef test(arg: int):'
         if import_name:
-            text += f'\n    {module_name}.test(arg)'
+            next_name = 'pass_00000000'
+            text += f'\n    {next_name} = arg'
+            for pass_idx in range(self.num_passes - 1):
+                cur_name = next_name
+                next_name = f'pass_{str(pass_idx + 1).zfill(8)}'
+                text += f'\n    {next_name} = {cur_name}'
+            text += f'\n    {module_name}.test({next_name})'
         else:
             text += '\n    pass'
+        text += '\n'
         path.write_text(text)
 
 
@@ -54,10 +69,17 @@ def cli(): pass
 @click.option('--out-dir', default='./out',
     type=click.Path(resolve_path=True),
     help="Directory path where to generate output")
-@click.option('--num-files', default=120,
+@click.option('--num-files', default=100,
+    type=click.IntRange(min=0, max=100000),
     help="Number of intermediate files to generate")
-def generate(out_dir, num_files):
-    app = App(out_dir=out_dir, num_files=num_files)
+@click.option('--num-passes', default=100,
+    type=click.IntRange(min=1, max=100000),
+    help="Number of internal passes per file")
+def generate(out_dir, num_files, num_passes):
+    app = App(
+        out_dir=out_dir,
+        num_files=num_files,
+        num_passes=num_passes)
     app.generate()
 
 

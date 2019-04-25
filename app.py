@@ -22,28 +22,14 @@ class App:
     def generate(self):
         self._prepare_dir()
 
-        path = self.out_path / 'begin.py'
-        path.touch()
-        path.write_text(
-f'''
-import file_00000000
-file_00000000.test(42)
-''')
-
         next_name = 'file_00000000.py'
+        self._generate_file('begin.py', next_name)
         for file_idx in range(self.num_files - 1):
             cur_name = next_name
             next_name = f'file_{str(file_idx + 1).zfill(8)}.py'
             self._generate_file(cur_name, next_name)
         self._generate_file(next_name, 'end.py')
-
-        path = self.out_path / 'end.py'
-        path.touch()
-        path.write_text(
-f'''
-def test(arg: str):
-    print(arg)
-''')
+        self._generate_file('end.py')
 
 
     def _prepare_dir(self):

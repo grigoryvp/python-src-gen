@@ -29,7 +29,9 @@ class App:
             next_name = f'file_{str(file_idx + 1).zfill(8)}.py'
             self._generate_file(cur_name, next_name)
         self._generate_file(next_name, 'end.py')
-        self._generate_file('end.py')
+        self._generate_file('end.py', 'bug.py')
+        (self.out_path / 'bug.py').write_text(
+            "def test(arg: str): print(arg)")
 
 
     def _prepare_dir(self):

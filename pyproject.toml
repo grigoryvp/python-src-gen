@@ -18,4 +18,4 @@ pip = ">=19.0"
 click = ">=7.0"
 
 [tool.poetry.scripts]
-python-src-gen = "python-src-gen.app:cli"
+python-src-gen = "python_src_gen.app:cli"

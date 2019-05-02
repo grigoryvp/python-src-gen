@@ -9,6 +9,7 @@ description = """
 Generates stub python source files to check dev tools for "big projects"
 handling.
 """
+authors = "Grigory Petrov @grigoryvp"
 license = "CC BY-NC-ND 4.0"
 
 [tool.poetry.dependencies]

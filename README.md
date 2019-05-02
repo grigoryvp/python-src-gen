@@ -1,6 +1,11 @@
 # Python source code generator
 
-Generates stub python source files to check dev tools for "big projects" handling.
+Generates stub python source files to check dev tools for "big projects"
+handling. For Python version 3.7 and PIP version 19.0 and later:
+
+```sh
+pip install git+https://github.com/grigoryvp/python-src-gen.git
+```
 
 ## License
 

@@ -1,0 +1,11 @@
+[build-system]
+requires = ["poetry"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+pip = ">=19.0"
+click = ">=7.0"
+
+[tool.poetry.scripts]
+python-src-gen = "python-src-gen.app:cli"

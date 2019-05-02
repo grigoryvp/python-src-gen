@@ -84,6 +84,3 @@ def generate(out_dir, num_files, num_passes):
         num_files=num_files,
         num_passes=num_passes)
     app.generate()
-
-
-cli()

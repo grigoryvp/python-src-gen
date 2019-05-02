@@ -1,3 +1,8 @@
+[build-system]
+requires = ["poetry"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
 name = "python-src-gen"
 version = "0.1.0"
 description = """
@@ -5,10 +10,6 @@ Generates stub python source files to check dev tools for "big projects"
 handling.
 """
 license = "CC BY-NC-ND 4.0"
-
-[build-system]
-requires = ["poetry"]
-build-backend = "poetry.masonry.api"
 
 [tool.poetry.dependencies]
 python = ">=3.7"
